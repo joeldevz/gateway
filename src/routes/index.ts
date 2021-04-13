@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { Auth } from "../middlewares"
-import { get, GetRouterEmployeer, PostRouterShop, RouterProduct } from "../controllers/"
+import { get, GetRouterEmployeer, PostRouterShop, RouterProduct, RouterTicket } from "../controllers/"
 const api = Router()
 
 api.post('/:uri', get)
@@ -18,4 +18,10 @@ api.get("/product/:uri", Auth, RouterProduct)
 api.put("/product/:uri", Auth, RouterProduct)
 api.post('/product/:uri', Auth, RouterProduct)
 api.delete('/product/:uri', Auth, RouterProduct)
+
+//ticket
+api.post('/ticket/:uri', Auth, RouterTicket)
+api.get('/ticket/:uri', Auth, RouterTicket)
+api.put('/ticket/:uri', Auth, RouterTicket)
+api.delete('/ticket/:uri', Auth, RouterTicket)
 export default api

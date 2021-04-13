@@ -3,6 +3,7 @@ import { diccionaryUser } from "./Diccionary/user"
 import { diccionaryEmployeer } from "./Diccionary/employeer"
 import { diccionaryShop } from "./Diccionary/shop"
 import { diccionaryProduct } from "./Diccionary/product"
+import { diccionaryTicket } from "./Diccionary/ticket"
 import { CODE_HTTP, MESSAGE } from "../type"
 export const gatewayUser = async (params: ReqParams) => {
     const { uri, body } = params
@@ -51,6 +52,21 @@ export const gatewayProduct = async (params: ReqParams) => {
             return { statusCode: CODE_HTTP.UNAUTHORIZED, data: MESSAGE.UNAUTHORIZED }
         }
         const query = await diccionaryProduct[uri]['action'](params)
+        return query
+    } catch (error) {
+        console.log(error)
+        return { statusCode: 404, data: "URI NOT FOUND" }
+    }
+}
+export const gatewayTicket = async (params: ReqParams) => {
+    const { uri, user } = params
+
+    try {
+        const rols: Array<string> = diccionaryTicket[uri]['rol']
+        if (!CheckpermitsRols(user.rol, rols)) {
+            return { statusCode: CODE_HTTP.UNAUTHORIZED, data: MESSAGE.UNAUTHORIZED }
+        }
+        const query = await diccionaryTicket[uri]['action'](params)
         return query
     } catch (error) {
         console.log(error)

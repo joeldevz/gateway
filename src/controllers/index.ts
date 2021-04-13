@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { gatewayUser, gatewayEmployee, gatewayShop, gatewayProduct } from "../services"
+import { gatewayUser, gatewayEmployee, gatewayShop, gatewayProduct,gatewayTicket } from "../services"
 import { ReqParams } from "../interface"
 export const get = async (req: Request, res: Response) => {
     const params: ReqParams = {
@@ -36,5 +36,15 @@ export const RouterProduct = async (req: Request, res: Response) => {
         user: req.user
     }
     const query = await gatewayProduct(params)
+    return res.status(query.statusCode).json(query)
+}
+export const RouterTicket = async (req: Request, res: Response) => {
+    const params: ReqParams = {
+        uri: `${req.params.uri}`,
+        body: req.body,
+        query: req.query,
+        user: req.user
+    }
+    const query = await gatewayTicket(params)
     return res.status(query.statusCode).json(query)
 }
