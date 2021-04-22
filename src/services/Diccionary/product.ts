@@ -86,7 +86,7 @@ const code = async (params: ReqParams) => {
 const search = async (params: ReqParams) => {
     try {
         const { query } = params
-        return fetch(`${URI}/shop/${query.id}`, {
+        return fetch(`${URI}/product/${query.id}`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json', 'Authorization': params.user._idUser, "user": JSON.stringify(params) },
         })
@@ -140,5 +140,9 @@ export const diccionaryProduct = {
     update: {
         rol: ['admin', 'employee'],
         action: update
+    },
+    search: {
+        rol: ['admin', 'employee'],
+        action: search
     }
 }
