@@ -92,7 +92,7 @@ export const diccionaryShop = {
         action: remove
     },
     'all': {
-        rol: ['admin', 'employee'],
+        rol: ['admin', 'employee','login'],
         action: all
     },
     search: {
