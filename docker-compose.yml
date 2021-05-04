@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: reverse_proxy_demo
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+    ports:
+      - 80:80
+      - 443:443
+    labels:
+      - com.github.jrcs.letscript-nginx-proxy-companion.nginx_proxy
+  apigateway:
+    image: nginx
+    build: .
+    command: sh -c "npm install; npm run dev"
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    restart: always
+    environment:
+      - VIRTUAL_HOST=kowe.es
+      - LETSENCRYPT_HOST=kowe.es
+      - LETSENCRYPT_EMAIL=info@joeldev.es
