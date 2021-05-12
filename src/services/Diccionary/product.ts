@@ -2,7 +2,7 @@ import axios from "axios"
 import fetch from "node-fetch"
 import { ReqParams } from "../../interface"
 
-const URI = 'http://185.239.200.188:6005'
+const URI = process.env.URI_PRODUCT
 
 const create = async (params: ReqParams) => {
     try {
@@ -86,9 +86,9 @@ const code = async (params: ReqParams) => {
 const search = async (params: ReqParams) => {
     try {
         const { query } = params
-        return fetch(`${URI}/product/${query.id}`, {
+        return fetch(`${URI}/product/searchName/${query.name}`, {
             method: 'get',
-            headers: { 'Content-Type': 'application/json', 'Authorization': params.user._idUser, "user": JSON.stringify(params) },
+            headers: { 'Content-Type': 'application/json', 'Authorization': params.user._idUser, "user": JSON.stringify(params.user) },
         })
             .then(res => res.json())
             .then(json => json);

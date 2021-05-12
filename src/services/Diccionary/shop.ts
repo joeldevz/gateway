@@ -2,7 +2,7 @@ import axios from "axios"
 import fetch from "node-fetch"
 import { ReqParams } from "../../interface"
 
-const URI = 'http://185.239.200.188:6004'
+const URI = process.env.URI_SHOP
 
 const create = async (params: Object) => {
     try {
@@ -92,7 +92,7 @@ export const diccionaryShop = {
         action: remove
     },
     'all': {
-        rol: ['admin', 'employee','login'],
+        rol: ['admin', 'employee', 'login'],
         action: all
     },
     search: {

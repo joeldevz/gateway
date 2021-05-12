@@ -2,7 +2,7 @@ import axios from "axios"
 import fetch from "node-fetch"
 import { ReqParams } from "../../interface"
 
-const URI = 'http://185.239.200.188:6005'
+const URI = process.env.URI_TICKET
 
 const create = async (params: ReqParams) => {
     try {

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { ReqParams } from "../../interface"
-const URI = 'http://185.239.200.188:6062'
+const URI = process.env.URI_EMPLOYEER
 const singin = async (params: ReqParams) => {
     try {
         const query = await axios.post(`${URI}/employee/singin`, params)

@@ -1,5 +1,5 @@
 import axios from "axios"
-const URI = 'http://185.239.200.188:6060'
+const URI = process.env.URI_USER
 const singin = async (params: Object) => {
     try {
         const query = await axios.post(`${URI}/singin`, params)

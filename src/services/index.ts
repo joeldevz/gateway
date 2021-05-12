@@ -45,6 +45,7 @@ export const gatewayShop = async (params: ReqParams) => {
 }
 export const gatewayProduct = async (params: ReqParams) => {
     const { uri, user } = params
+    console.log(uri)
 
     try {
         const rols: Array<string> = diccionaryProduct[uri]['rol']
